@@ -26,6 +26,7 @@ document.getElementById('upload-form').addEventListener('submit', function(event
     .then(response => response.text())
     .then(data => {
         alert(data);
+        // Code to analyze the uploaded image using GOOGLE_VISION_API_KEY
     })
     .catch(error => {
         console.error('Error:', error);

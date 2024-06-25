@@ -22,6 +22,7 @@ cat <<EOL > index.html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rwanda Crop Doctor</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="frontend/css/styles.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
     <nav class="bg-green-500 p-4 flex justify-between">
@@ -41,15 +42,20 @@ cat <<EOL > index.html
     </nav>
 
     <section id="home" class="p-8">
-        <h1 class="text-4xl font-bold mb-4">Welcome to Rwanda Crop Doctor</h1>
-        <p class="text-lg">Your go-to solution for crop diagnostics.</p>
-        <form id="upload-form" class="space-y-4" enctype="multipart/form-data">
-            <div>
-                <label for="image" class="block text-lg">Upload Image:</label>
-                <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded" required>
-            </div>
-            <button type="submit" class="bg-green-500 text-white p-2 rounded">Submit</button>
-        </form>
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Rwanda Crop Doctor</h1>
+            <p class="text-lg mb-6">Your go-to solution for crop diagnostics. Upload an image of your crop and let us help you identify any issues.</p>
+            <form id="upload-form" class="space-y-4" enctype="multipart/form-data">
+                <div>
+                    <label for="image" class="block text-lg">Upload Image:</label>
+                    <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <button type="submit" class="bg-green-500 text-white p-2 rounded">Submit</button>
+            </form>
+        </div>
+        <div class="mt-8">
+            <img src="https://via.placeholder.com/800x400" alt="Placeholder Image" class="mx-auto">
+        </div>
     </section>
 
     <section id="about" class="p-8 bg-white">
@@ -76,9 +82,15 @@ cat <<EOL > index.html
         </form>
     </section>
 
+    <script src="frontend/js/config.js"></script>
     <script src="frontend/js/scripts.js"></script>
 </body>
 </html>
+EOL
+
+# Create config.js
+cat <<EOL > frontend/js/config.js
+const GOOGLE_VISION_API_KEY = 'AIzaSyA2Bu3PuiFnIZkicSVT_ogQTJvGtT7cIkE';
 EOL
 
 # Create scripts.js
@@ -111,6 +123,7 @@ document.getElementById('upload-form').addEventListener('submit', function(event
     .then(response => response.text())
     .then(data => {
         alert(data);
+        // Code to analyze the uploaded image using GOOGLE_VISION_API_KEY
     })
     .catch(error => {
         console.error('Error:', error);
@@ -171,6 +184,7 @@ if (\$_SERVER["REQUEST_METHOD"] == "POST") {
     if(\$check !== false) {
         if (move_uploaded_file(\$_FILES["image"]["tmp_name"], \$target_file)) {
             echo "The file ". htmlspecialchars( basename( \$_FILES["image"]["name"])). " has been uploaded.";
+            // Add code here to analyze the image using Google Vision API
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
@@ -182,3 +196,4 @@ if (\$_SERVER["REQUEST_METHOD"] == "POST") {
 EOL
 
 echo "Frontend setup complete."
+
