@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rwanda Crop Doctor</title>
+    <link rel="stylesheet" href="frontend/css/styles.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <nav class="bg-green-500 p-4 flex justify-between">
+        <ul class="flex space-x-4">
+            <li><a href="#home" class="text-white">Home</a></li>
+            <li><a href="#about" class="text-white">About</a></li>
+            <li><a href="#contact" class="text-white">Contact</a></li>
+        </ul>
+        <div>
+            <select id="language-select" class="p-2">
+                <option value="en">English</option>
+                <option value="rw">Kinyarwanda</option>
+                <option value="fr">French</option>
+                <option value="sw">Swahili</option>
+            </select>
+        </div>
+    </nav>
+
+    <section id="home" class="p-8">
+        <h1 class="text-4xl font-bold mb-4">Welcome to Rwanda Crop Doctor</h1>
+        <p class="text-lg">Your go-to solution for crop diagnostics.</p>
+        <form id="upload-form" class="space-y-4" enctype="multipart/form-data">
+            <div>
+                <label for="image" class="block text-lg">Upload Image:</label>
+                <input type="file" id="image" name="image" class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+            <button type="submit" class="bg-green-500 text-white p-2 rounded">Submit</button>
+        </form>
+    </section>
+
+    <section id="about" class="p-8 bg-white">
+        <h2 class="text-3xl font-semibold mb-4">About Us</h2>
+        <p class="text-lg">Rwanda Crop Doctor is an initiative to help farmers diagnose crop diseases and get appropriate solutions.</p>
+    </section>
+
+    <section id="contact" class="p-8">
+        <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
+        <form id="contact-form" class="space-y-4">
+            <div>
+                <label for="name" class="block text-lg">Name:</label>
+                <input type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+            <div>
+                <label for="email" class="block text-lg">Email:</label>
+                <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded" required>
+            </div>
+            <div>
+                <label for="message" class="block text-lg">Message:</label>
+                <textarea id="message" name="message" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+            </div>
+            <button type="submit" class="bg-green-500 text-white p-2 rounded">Submit</button>
+        </form>
+    </section>
+
+    <script src="frontend/js/scripts.js"></script>
+</body>
+</html>
