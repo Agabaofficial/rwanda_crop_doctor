@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Function to check if npm is installed
-check_npm() {
-    if ! command -v npm &> /dev/null; then
-        echo "npm not found, installing..."
-        curl -L https://www.npmjs.com/install.sh | sh
-    fi
-}
-
-# Check for npm and install if necessary
-check_npm
-
 # Create project directory structure
 mkdir -p frontend/css
 mkdir -p frontend/js
@@ -24,31 +13,6 @@ rm -rf frontend/js/*
 rm -rf frontend/php/*
 rm -rf frontend/img/uploads/*
 
-# Install Tailwind CSS
-npm install -D tailwindcss
-npx tailwindcss init
-
-# Configure Tailwind CSS
-cat <<EOL > tailwind.config.js
-module.exports = {
-  content: ["./index.html", "./frontend/**/*.{html,js,php}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-EOL
-
-# Create input CSS file for Tailwind
-cat <<EOL > frontend/css/tailwind.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-EOL
-
-# Generate Tailwind CSS
-npx tailwindcss -i ./frontend/css/tailwind.css -o ./frontend/css/styles.css --watch &
-
 # Create index.html
 cat <<EOL > index.html
 <!DOCTYPE html>
@@ -57,7 +21,7 @@ cat <<EOL > index.html
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rwanda Crop Doctor</title>
-    <link rel="stylesheet" href="frontend/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800">
     <nav class="bg-green-500 p-4 flex justify-between">
@@ -218,4 +182,3 @@ if (\$_SERVER["REQUEST_METHOD"] == "POST") {
 EOL
 
 echo "Frontend setup complete."
-
